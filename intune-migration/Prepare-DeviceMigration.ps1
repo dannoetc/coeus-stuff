@@ -12,7 +12,10 @@ $OneDriveKFM = $MigrationConfig.UseOneDriveKFM
 $InstallOneDrive = $MigrationConfig.InstallOneDrive
 $StartBoundary = $MigrationConfig.StartBoundary
 
-
+function Remove-DuoDesktop {
+	$Duo = get-wmiobject Win32_Product -filter "name='Duo Authentication for Windows Logon x64'"
+	Start-Process -FilePath $env:systemroot\system32\msiexec.exe -ArgumentList @( '/x "$Duo.IdentifyingNumber"')
+}
 
 function Set-RegistryValue {
 
@@ -207,7 +210,7 @@ Function New-MigrationTask{
 
 }
 
-
+Remove-DuoDesktop
 New-MigrationTask
 
 If($OneDriveKFM){

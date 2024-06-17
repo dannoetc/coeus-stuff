@@ -19,7 +19,7 @@ Function Add-MigrationDirectory{
 
 function Remove-DuoDesktop {
 	$Duo = get-wmiobject Win32_Product -filter "name='Duo Authentication for Windows Logon x64'"
-	Start-Process -FilePath $env:systemroot\system32\msiexec.exe -ArgumentList @( '/x "$Duo.IdentifyingNumber"')
+	Start-Process -FilePath C:\Windows\system32\msiexec.exe -ArgumentList @( '/x "$Duo.IdentifyingNumber"')
 }
 
 function Set-RegistryValue {
